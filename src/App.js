@@ -1,14 +1,13 @@
 import React, { Fragment } from 'react';
 import ChooseListSize from './components/ChooseListSize';
-//import getRequestModule from './js/getRequest';
+import ContactTable from './components/ContactTable';
 
 function App() {
   return (
     <Fragment>
-      <div>
-        <h1>Contact-book</h1>
-      </div>
+      <h1>Contact-book</h1>
       <ChooseListSize />
+      <ContactTable />
     </Fragment>
   );
 }
