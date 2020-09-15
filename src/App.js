@@ -1,11 +1,15 @@
-import React from 'react';
-import './App.css';
+import React, { Fragment } from 'react';
+import ChooseListSize from './components/ChooseListSize';
+//import getRequestModule from './js/getRequest';
 
 function App() {
   return (
-    <div className="App">
-      <h1>TEST</h1>
-    </div>
+    <Fragment>
+      <div>
+        <h1>Contact-book</h1>
+      </div>
+      <ChooseListSize />
+    </Fragment>
   );
 }
 
