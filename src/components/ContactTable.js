@@ -3,11 +3,13 @@ import React from 'react';
 let showTenContacts = (srcState, num) => {
   let resArr = [];
   let start = srcState.paginator.pageNow*num - num;
-  for (let i = 0; i < num; i++) {
-    console.log(start+i, srcState.contacts[start+i]);
+  let stop = 0;
+  if (srcState.contacts.length - start - 10 < 0) {
+    stop = srcState.contacts.length - start
+  } else {stop = 10};
+  for (let i = 0; i < stop; i++) {
     resArr.push(srcState.contacts[start+i])
   };
-  console.log('resArr: ', resArr);
   return resArr
 };
 
@@ -17,7 +19,6 @@ let showTenContacts = (srcState, num) => {
         <h2>выберите длинну списка контактов</h2>
       )
     } else {
-      console.log(state.contacts, state.paginator.pageNow);
       return(
         <table>
           <thead>
