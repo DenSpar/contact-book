@@ -11,7 +11,7 @@ function App() {
     <TableContext.Provider value={{ setTableState }}>
       <h1>Contact-book</h1>
       <ChooseListSize />
-      <ContactTable state={tableState}/>
+      <ContactTable mainState={tableState}/>
       <Paginator paginator={tableState.paginator} />
     </TableContext.Provider>
   );
