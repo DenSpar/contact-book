@@ -1,0 +1,11 @@
+.paginator {
+    display: flex;
+}
+
+.paginator_page {
+    list-style-type: none;
+}
+
+.activePage {
+    color: red;
+}
