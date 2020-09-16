@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import ChooseListSize from './components/ChooseListSize';
-import ContactTable from './components/ContactTable';
+import ChooseListSize from 'components/ChooseListSize';
+import ContactTable from 'components/ContactTable';
 //
-import TableContext from './tableContext';
+import TableContext from 'tableContext';
 
 
 function App() {
