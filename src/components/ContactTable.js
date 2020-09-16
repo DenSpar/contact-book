@@ -1,7 +1,20 @@
 import React from 'react';
 
-  const ContactTable = ({table}) => {
-    if(table.length === 0) {
+let showTenContacts = (srcState, num) => {
+  let resArr = [];
+  let start = srcState.paginator.pageNow*num - num;
+  let stop = 0;
+  if (srcState.contacts.length - start - 10 < 0) {
+    stop = srcState.contacts.length - start
+  } else {stop = 10};
+  for (let i = 0; i < stop; i++) {
+    resArr.push(srcState.contacts[start+i])
+  };
+  return resArr
+};
+
+  const ContactTable = ({state}) => {
+    if(!state.contacts) {
       return(
         <h2>выберите длинну списка контактов</h2>
       )
@@ -18,7 +31,7 @@ import React from 'react';
             </tr>
           </thead>
           <tbody>
-            {table.map((contact, rowNum) => (
+            {showTenContacts(state, 10).map((contact, rowNum) => (
               <tr key={rowNum}>
                 <td>{contact.id}</td>
                 <td>{contact.firstName}</td>
