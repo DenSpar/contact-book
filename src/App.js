@@ -1,14 +1,19 @@
-import React, { Fragment } from 'react';
+import React, { useState } from 'react';
 import ChooseListSize from './components/ChooseListSize';
 import ContactTable from './components/ContactTable';
+//
+import TableContext from './tableContext';
+
 
 function App() {
+  const [tableState, setTableState] = useState([]);
+
   return (
-    <Fragment>
+    <TableContext.Provider value={{ setTableState }}>
       <h1>Contact-book</h1>
       <ChooseListSize />
-      <ContactTable />
-    </Fragment>
+      <ContactTable table={tableState}/>
+    </TableContext.Provider>
   );
 }
 
