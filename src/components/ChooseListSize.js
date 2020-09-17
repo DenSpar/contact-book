@@ -7,7 +7,8 @@ let longListSize = 'http://www.filltext.com/?rows=1000&id={number|1000}&firstNam
 
 let makeState = (data) => {
   let state = {
-    contacts:data    
+    contacts:data,
+    fullInfo:null   
   };
   if (data.length > 10) {
     state.paginator = {
