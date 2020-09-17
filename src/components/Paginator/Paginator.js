@@ -18,7 +18,7 @@ const Paginator = ({paginator}) => {
                 ...prevState,
                 paginator:{
                     pageNow:page,
-                    length:paginator.length
+                    length:prevState.paginator.length
                 },
                 fullInfo: null
             }))

@@ -1,5 +1,54 @@
 import React, {useContext} from 'react';
 import TableContext from 'tableContext';
+import sortContacts from 'js/sortContacts';
+
+let headRowArr = ['id', 'firstName', 'lastName', 'email', 'phone'];
+// let sortContacts = (srcContacts, rules) => {
+//   if (rules.how === 'incr') { //по возрастанию
+//     return srcContacts.sort((a, b) => (a[rules.by] < b[rules.by] && -1) || (a[rules.by] > b[rules.by] && 1) || 0);
+//   } else { //по убыванию
+//     return srcContacts.sort((a, b) => (a[rules.by] < b[rules.by] && 1) || (a[rules.by] > b[rules.by] && -1) || 0);
+//   };
+// };
+const HeadRow = ({sorted}) => {
+  const {setTableState} = useContext(TableContext);
+  let sortHandler = (colName) => {
+    if (sorted.by !== colName || sorted.how === 'decr') {
+      sorted = {
+        by:colName,
+        how:'incr'
+      };
+    } else {sorted.how = 'decr'};
+    setTableState(prevState => ({
+      contacts:sortContacts(prevState.contacts,sorted),
+      paginator:{
+          pageNow:1,
+          length:prevState.paginator.length
+      },
+      fullInfo: null,
+      sort: sorted
+    }))
+  };
+
+  return(
+    <thead>
+      <tr>
+        {headRowArr.map((srcColName, colNum) => {
+          let newColName = srcColName;
+          if (sorted.by === srcColName) {
+            if (sorted.how === 'incr') {
+              newColName += ' ▲';
+            } else {newColName += ' ▼'};
+          };
+          return(
+          <th onClick={() => sortHandler(srcColName)} key={colNum}>
+            {newColName}
+            </th>
+        )})}
+      </tr>
+    </thead>
+  )
+};
 
 let showTenContacts = (srcState, num) => {
   let resArr = [];
@@ -31,15 +80,7 @@ const ContactTable = ({state}) => {
     } else {
       return(
         <table>
-          <thead>
-            <tr>
-              <th>id</th>
-              <th>firstName</th>
-              <th>lastName</th>
-              <th>email</th>
-              <th>phone</th>
-            </tr>
-          </thead>
+          <HeadRow sorted={state.sort} />
           <tbody>
             {showTenContacts(state, 10).map((contact, rowNum) => (
               <tr key={rowNum} onClick={() => contactClickHandler(contact)}>
