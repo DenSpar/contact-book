@@ -1,22 +1,26 @@
 import React, { Fragment, useContext } from 'react';
 import getRequestModule from 'js/getRequest';
 import TableContext from 'tableContext';
+import sortContacts from 'js/sortContacts';
 
 let shortListSize = 'http://www.filltext.com/?rows=32&id={number|1000}&firstName={firstName}&lastName={lastName}&email={email}&phone={phone|(xxx)xxx-xx-xx}&address={addressObject}&description={lorem|32}';
 let longListSize = 'http://www.filltext.com/?rows=1000&id={number|1000}&firstName={firstName}&delay=3&lastName={lastName}&email={email}&phone={phone|(xxx)xxx-xx-xx}&address={addressObject}&description={lorem|32}';
 
 let makeState = (data) => {
   let state = {
-    contacts:data,
-    fullInfo:null   
+    fullInfo:null,
+    sort:{
+      by:'id',
+      how:'incr'
+    }
   };
+  state.contacts = sortContacts(data, state.sort);
   if (data.length > 10) {
     state.paginator = {
       length:Math.ceil(data.length/10),
       pageNow:1
     }
   } else {state.paginator = null};
-  //sort
   return state
 };
 
