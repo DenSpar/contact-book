@@ -14,11 +14,14 @@ const Paginator = ({paginator}) => {
         
         let howManyPages = [];
         let clickHandler = (page) => {           
-            setTableState(prevState => {
-                let newState = {...prevState};
-                newState.paginator.pageNow = page;
-                return newState
-            })
+            setTableState(prevState => ({
+                ...prevState,
+                paginator:{
+                    pageNow:page,
+                    length:paginator.length
+                },
+                fullInfo: null
+            }))
         };
         for (let i = 0; i < paginator.length; i++) {
             howManyPages.push(i+1)

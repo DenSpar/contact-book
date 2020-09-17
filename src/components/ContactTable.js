@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import TableContext from 'tableContext';
 
 let showTenContacts = (srcState, num) => {
   let resArr = [];
@@ -13,7 +14,16 @@ let showTenContacts = (srcState, num) => {
   return resArr
 };
 
-  const ContactTable = ({state}) => {
+const ContactTable = ({state}) => {
+    const {setTableState} = useContext(TableContext);
+
+    let contactClickHandler = (cont) => {
+      setTableState(prevState => ({
+        ...prevState,
+        fullInfo:cont
+      }));
+    };
+
     if(!state.contacts) {
       return(
         <h2>выберите длинну списка контактов</h2>
@@ -32,7 +42,7 @@ let showTenContacts = (srcState, num) => {
           </thead>
           <tbody>
             {showTenContacts(state, 10).map((contact, rowNum) => (
-              <tr key={rowNum}>
+              <tr key={rowNum} onClick={() => contactClickHandler(contact)}>
                 <td>{contact.id}</td>
                 <td>{contact.firstName}</td>
                 <td>{contact.lastName}</td>
