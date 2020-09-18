@@ -1,9 +1,10 @@
 import React from 'react';
+import './fullInfo.css';
 
 const FullInfo = ({contactInfo}) => {
     if(contactInfo) {
       return(
-        <div>
+        <div className="fullInfo_container">
           <div>
             <span>Выбран пользователь </span>
             <span><b>{contactInfo.firstName + " " + contactInfo.lastName}</b></span>
