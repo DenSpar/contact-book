@@ -1,15 +1,9 @@
 import React, {useContext} from 'react';
 import TableContext from 'tableContext';
 import sortContacts from 'js/sortContacts';
+import './contactTable.css';
 
 let headRowArr = ['id', 'firstName', 'lastName', 'email', 'phone'];
-// let sortContacts = (srcContacts, rules) => {
-//   if (rules.how === 'incr') { //по возрастанию
-//     return srcContacts.sort((a, b) => (a[rules.by] < b[rules.by] && -1) || (a[rules.by] > b[rules.by] && 1) || 0);
-//   } else { //по убыванию
-//     return srcContacts.sort((a, b) => (a[rules.by] < b[rules.by] && 1) || (a[rules.by] > b[rules.by] && -1) || 0);
-//   };
-// };
 const HeadRow = ({sorted}) => {
   const {setTableState} = useContext(TableContext);
   let sortHandler = (colName) => {
@@ -41,7 +35,8 @@ const HeadRow = ({sorted}) => {
             } else {newColName += ' ▼'};
           };
           return(
-          <th onClick={() => sortHandler(srcColName)} key={colNum}>
+          <th onClick={() => sortHandler(srcColName)} 
+          key={colNum} className='table_cell'>
             {newColName}
             </th>
         )})}
@@ -79,16 +74,16 @@ const ContactTable = ({state}) => {
       )
     } else {
       return(
-        <table>
+        <table className='table'>
           <HeadRow sorted={state.sort} />
           <tbody>
             {showTenContacts(state, 10).map((contact, rowNum) => (
               <tr key={rowNum} onClick={() => contactClickHandler(contact)}>
-                <td>{contact.id}</td>
-                <td>{contact.firstName}</td>
-                <td>{contact.lastName}</td>
-                <td>{contact.email}</td>
-                <td>{contact.phone}</td>
+                <td className='table_cell'>{contact.id}</td>
+                <td className='table_cell'>{contact.firstName}</td>
+                <td className='table_cell'>{contact.lastName}</td>
+                <td className='table_cell'>{contact.email}</td>
+                <td className='table_cell'>{contact.phone}</td>
               </tr>
             ))}
           </tbody>

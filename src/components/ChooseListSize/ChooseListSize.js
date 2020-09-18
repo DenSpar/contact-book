@@ -1,7 +1,8 @@
-import React, { Fragment, useContext } from 'react';
+import React, { useContext } from 'react';
 import getRequestModule from 'js/getRequest';
 import TableContext from 'tableContext';
 import sortContacts from 'js/sortContacts';
+import './chooseListSize.css';
 
 let shortListSize = 'http://www.filltext.com/?rows=32&id={number|1000}&firstName={firstName}&lastName={lastName}&email={email}&phone={phone|(xxx)xxx-xx-xx}&address={addressObject}&description={lorem|32}';
 let longListSize = 'http://www.filltext.com/?rows=1000&id={number|1000}&firstName={firstName}&delay=3&lastName={lastName}&email={email}&phone={phone|(xxx)xxx-xx-xx}&address={addressObject}&description={lorem|32}';
@@ -42,10 +43,10 @@ const ChooseListSize = () => {
   };
 
   return(
-    <Fragment>
-      <button onClick={getShortList}>короткий список</button>
-      <button onClick={getLongList}>длинный список</button>
-    </Fragment>
+    <div className="chooseListSize_container">
+      <button className="chooseListSize_container_btn" onClick={getShortList}>короткий список</button>
+      <button className="chooseListSize_container_btn" onClick={getLongList}>длинный список</button>
+    </div>
   )
 };
 

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import ChooseListSize from 'components/ChooseListSize';
-import ContactTable from 'components/ContactTable';
+import ChooseListSize from 'components/ChooseListSize/ChooseListSize';
+import ContactTable from 'components/ContactTable/ContactTable';
 import TableContext from 'tableContext';
 import Paginator from 'components/Paginator/Paginator';
-import FullInfo from 'components/FullInfo';
+import FullInfo from 'components/FullInfo/FullInfo';
 
 function App() {
   const [tableState, setTableState] = useState({});
